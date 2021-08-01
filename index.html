@@ -13,34 +13,27 @@
     ></script>
   </head>
   <body>
-    <form id="shopping__list">
-      <div class="title">Shopping List</div>
-      <ul>
-        <li>
-          우유
-          <button class="deletBtn">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </li>
-        <li>
-          달걀
-          <button class="deletBtn">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </li>
-        <li>
-          파
-          <button class="deletBtn">
-            <i class="fas fa-trash-alt"></i>
-          </button>
+    <section class="list">
+      <header class="title">Shopping List</header>
+
+      <ul class="items">
+        <li class="item__row">
+          <div class="item">
+            <span class="item__name">Egg</span>
+            <button class="deletBtn">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+          <div class="item__devider"></div>
         </li>
       </ul>
-      <input type="text" />
-      <div class="buttom">
+
+      <footer class="footer">
+        <input class="footer__input" type="text" />
         <button class="plusBtn">
-          <i class="fas fa-trash-alt"></i>
+          <i class="fas fa-plus"></i>
         </button>
-      </div>
-    </form>
+      </footer>
+    </section>
   </body>
 </html>

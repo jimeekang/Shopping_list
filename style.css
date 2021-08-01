@@ -1,80 +1,104 @@
-body {
-  margin: 0;
-  background: rgb(0, 0, 0) no-repeat;
-  height: 100vh;
+* {
   box-sizing: border-box;
-  overflow: hidden;
-}
-
-li {
-  list-style: none;
-}
-
-button {
-  background: transparent;
-  border: none;
-}
-
-form {
-  background: rgba(225, 225, 225);
-  text-align: center;
-  margin: 20px auto;
-  width: 350px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 4px;
-}
-
-.title {
-  background: linear-gradient(
-    rgba(242, 158, 250, 0.5),
-    rgba(245, 232, 174, 0.5)
-  );
-  width: 100%;
-  height: 10%;
-  text-align: center;
-  line-height: 50px;
 }
 
 ul {
-  padding-left: 0;
-  margin: 0;
-  width: 100%;
-  height: 75%;
+  padding: 0;
+  list-style: none;
 }
 
-li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px 20px;
+body {
+  background-color: #ced3df;
+  text-align: center;
 }
 
-.fas {
+button {
+  outline: none;
+  background: transparent;
+  border: none;
   cursor: pointer;
 }
 
-input {
-  width: 100%;
-  height: 5%;
-  padding: 0;
-  border: 0;
+.list {
+  width: 400px;
+  margin: auto;
+  background-color: #f1f0f7;
+  border-radius: 20px;
+  -webkit-box-shadow: 9px 9px 15px 5px #86887c;
+  box-shadow: 9px 9px 15px 5px #86887c;
 }
-.buttom {
-  display: block;
-  width: 100%;
-  height: 10%;
-  padding: 0;
+
+header {
+  height: 48px;
+  padding: 8px;
+  font-size: 24px;
   background: linear-gradient(
-    rgba(242, 158, 250, 0.5),
-    rgba(245, 232, 174, 0.5)
+    0deg,
+    rgba(247, 154, 233, 1) 0%,
+    rgba(254, 217, 125, 0.8244339972317052) 100%
   );
+  border-radius: 20px 20px 0 0;
+  color: white;
+}
+
+.items {
+  height: 500px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 32px;
+}
+
+.deletBtn {
+  font-size: 16px;
+  transition: all 200ms ease-in;
+}
+
+.deletBtn:hover {
+  color: red;
+  transform: scale(1.2);
+}
+
+/* 구분선 */
+.item__devider {
+  width: 90%;
+  height: 2px;
+  background: lightgray;
+  margin: auto;
+}
+
+.footer {
+  background: linear-gradient(
+    0deg,
+    rgba(247, 154, 233, 1) 0%,
+    rgba(254, 217, 125, 0.8244339972317052) 100%
+  );
+  border-radius: 0 0 20px 20px;
+  color: white;
+}
+
+.footer__input {
+  width: 100%;
+  height: 32px;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  padding: 0 16px;
 }
 
 .plusBtn {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
+  font-size: 28px;
+  background: black;
+  border-radius: 50%;
+  color: white;
+  transition: all 200ms ease-in;
+}
+
+.plusBtn:hover {
+  transform: scale(1.2);
 }
