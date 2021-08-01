@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  background: rgb(0, 0, 0) no-repeat;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  background: transparent;
+  border: none;
+}
+
+form {
+  background: rgba(225, 225, 225);
+  text-align: center;
+  margin: 20px auto;
+  width: 350px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+
+.title {
+  background: linear-gradient(
+    rgba(242, 158, 250, 0.5),
+    rgba(245, 232, 174, 0.5)
+  );
+  width: 100%;
+  height: 10%;
+  text-align: center;
+  line-height: 50px;
+}
+
+ul {
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+  height: 75%;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+
+.fas {
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  height: 5%;
+  padding: 0;
+  border: 0;
+}
+.buttom {
+  display: block;
+  width: 100%;
+  height: 10%;
+  padding: 0;
+  background: linear-gradient(
+    rgba(242, 158, 250, 0.5),
+    rgba(245, 232, 174, 0.5)
+  );
+}
+
+.plusBtn {
+  width: 40px;
+  height: 40px;
+}
