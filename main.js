@@ -1,31 +1,32 @@
-const addBtn = document.querySelector(".footer__plusBtn");
-const itmeInput = document.querySelector(".footer__input");
+const upBtn = document.querySelector(".upbtn");
+const downBtn = document.querySelector(".downbtn");
 const items = document.querySelector(".items");
+const footerInput = document.querySelector(".footer__input");
 
-function onAdd() {
-  //1. input text 값 가져오기 (사용자가 입력한 텍스트를 받아옴)
-  const text = itmeInput.value;
+// 완성된 아이템
+function onAdd(itemlist) {
+  //1. input 값 가져오기
+  const text = footerInput.value;
   if (text === "") {
-    itmeInput.focus();
+    footerInput.focus();
     return;
   }
+  //2. item 태크 만들기
+  const itme = createItem(text, itemlist);
 
-  //2. 새로운 아이템 만들기
-  const item = createItem(text);
+  //3. items안에 item태그 넣기
+  itemlist.appendChild(itme);
 
-  //3. items 안에 새로운 아이템 추가하기
-  items.appendChild(item);
-
-  // 4. 아이템이 추가될 때 스크롤링
-  item.scrollIntoView({ block: "center" });
-
-  // 4. 인풋 초기화 (인풋값이 빈칸이면 focus)
-  itmeInput.value = "";
-  itmeInput.focus();
+  //4. input 커서 리셋
+  footerInput.value = "";
+  footerInput.focus();
 }
 
-// 추가할 node 만들기 (HTMl 의 추가 할 list 부분)
-function createItem(text) {
+// item 태그들 만들기
+function createItem(text, itemlist) {
+  const items = document.createElement("ul");
+  items.setAttribute("class", "items");
+
   const itemRow = document.createElement("li");
   itemRow.setAttribute("class", "item__row");
 
@@ -34,36 +35,48 @@ function createItem(text) {
 
   const name = document.createElement("span");
   name.setAttribute("class", "item__name");
-  name.innerText = text; // input값 아이템으로 추가
+  name.innerText = text;
 
   const deletBtn = document.createElement("button");
-  deletBtn.setAttribute("class", "item__deletBtn");
+  deletBtn.setAttribute("class", "deletBtn");
   deletBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
-  // item 지우기
   deletBtn.addEventListener("click", () => {
-    items.removeChild(itemRow);
+    itemlist.removeChild(itemRow);
   });
 
-  const itmeDevide = document.createElement("div");
-  itmeDevide.setAttribute("class", "item__devider");
+  const itemDevider = document.createElement("div");
+  itemDevider.setAttribute("class", "item__devider");
 
+  items.appendChild(itemRow);
   itemRow.appendChild(item);
-  itemRow.appendChild(itmeDevide);
+  itemRow.appendChild(itemDevider);
   item.appendChild(name);
   item.appendChild(deletBtn);
 
-  // item을 반환해야 하니까
-  return itemRow;
+  return items;
 }
 
-addBtn.addEventListener("click", () => {
-  onAdd();
+// woolworth 리스트에 추가
+const itemList1 = document.querySelector(".itme__list1");
+itemList1.innerHTML = ` <div class="market__name woolworth">Woolworths😀</div>`;
+
+upBtn.addEventListener("click", () => {
+  onAdd(itemList1);
 });
 
-// enter 치면 input 값 입력
-itmeInput.addEventListener("keypress", (event) => {
-  // 누르는 key(event.key)가 enter
+// korean market 리스트에 추가
+const itemList2 = document.querySelector(".itme__list2");
+itemList2.innerHTML = `<div class="market__name korean-market">Korean Market😀</div>`;
+
+downBtn.addEventListener("click", () => {
+  onAdd(itemList2);
+});
+
+// 지정키에 따라 지정 list에 추가
+footerInput.addEventListener("keypress", (event) => {
   if (event.key === "Enter") {
-    onAdd();
+    onAdd(itemList1);
+  } else if (event.key === "/") {
+    onAdd(itemList2);
   }
 });
