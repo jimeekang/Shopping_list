@@ -5,6 +5,10 @@ const items = document.querySelector(".items");
 function onAdd() {
   //1. input text 값 가져오기 (사용자가 입력한 텍스트를 받아옴)
   const text = itmeInput.value;
+  if (text === "") {
+    itmeInput.focus();
+    return;
+  }
 
   //2. 새로운 아이템 만들기
   const item = createItem(text);
@@ -57,9 +61,9 @@ addBtn.addEventListener("click", () => {
 });
 
 // enter 치면 input 값 입력
-itmeInput.addEventListener("keypress", (evnt) => {
+itmeInput.addEventListener("keypress", (event) => {
   // 누르는 key(event.key)가 enter
-  if (evnt.key === "Enter") {
+  if (event.key === "Enter") {
     onAdd();
   }
 });
