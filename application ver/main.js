@@ -53,7 +53,7 @@ function createItem(text, itemlist) {
   item.appendChild(name);
   item.appendChild(deletBtn);
 
-  return itemRow;
+  return items;
 }
 
 // woolworth 리스트에 추가
