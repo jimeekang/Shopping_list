@@ -14,6 +14,7 @@ function onAdd() {
   const item = createItem(text);
 
   //3. items 안에 새로운 아이템 추가하기
+  // node를 return 해야지 appendchild 실행가능 / item 이 node 여야함
   items.appendChild(item);
 
   // 4. 아이템이 추가될 때 스크롤링
@@ -24,35 +25,23 @@ function onAdd() {
   itmeInput.focus();
 }
 
-// 추가할 node 만들기 (HTMl 의 추가 할 list 부분)
+let id = 0; //UUID
 function createItem(text) {
   const itemRow = document.createElement("li");
   itemRow.setAttribute("class", "item__row");
+  itemRow.setAttribute("data-id", id);
+  itemRow.innerHTML = `
+      <div class="item">
+        <span class="itme__name">${text}</span>
+        <button class="item__deletBtn">
+          <i class="fas fa-trash-alt" data-id=${id}></i> 
+        </button>
+      </div>
+      <div class="item__devider"></div>`;
+  // 해당 item 과 delet-button 에 고유 id 추가
 
-  const item = document.createElement("div");
-  item.setAttribute("class", "item");
+  id++; // item 이 새로 만들어질 때마다 증가
 
-  const name = document.createElement("span");
-  name.setAttribute("class", "item__name");
-  name.innerText = text; // input값 아이템으로 추가
-
-  const deletBtn = document.createElement("button");
-  deletBtn.setAttribute("class", "item__deletBtn");
-  deletBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
-  // item 지우기
-  deletBtn.addEventListener("click", () => {
-    items.removeChild(itemRow);
-  });
-
-  const itmeDevide = document.createElement("div");
-  itmeDevide.setAttribute("class", "item__devider");
-
-  itemRow.appendChild(item);
-  itemRow.appendChild(itmeDevide);
-  item.appendChild(name);
-  item.appendChild(deletBtn);
-
-  // item을 반환해야 하니까
   return itemRow;
 }
 
@@ -65,5 +54,18 @@ itmeInput.addEventListener("keypress", (event) => {
   // 누르는 key(event.key)가 enter
   if (event.key === "Enter") {
     onAdd();
+  }
+});
+
+// event 위임
+// 부모 container 에서 원하는 target 이 click 이 되었을 때 해당하는 아이템을 삭제해줌
+// item 과 icon 마다 고유한 id를 지정해줌 (attribute : data-id) => HTML
+items.addEventListener("click", (event) => {
+  // if(event.target.nodeName === 'I') => 만약 다른 icon 이 있다면 실행이 안될 수 있음
+
+  const id = event.target.dataset.id;
+  if (id) {
+    const toBeDeleted = document.querySelector(`.item__row[data-id='${id}']`); //  data-id 가 event.target.dataset.id 같아야함
+    toBeDeleted.remove();
   }
 });
